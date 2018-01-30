@@ -1,0 +1,8 @@
+.comment-content {
+    display: none;
+}
+
+.actif-comment {
+    display: block !important;
+}
+

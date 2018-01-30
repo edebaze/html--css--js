@@ -51,6 +51,15 @@
         <h2>Welcolme to THE Blog</h2>
     </div>
 
+    <div id="rssincl-box-container-1169349"></div>
+    <script type="text/javascript">
+        (function() {
+            var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
+            s.src = 'http://output95.rssinclude.com/output?type=asyncjs&id=1169349&hash=f0af039d035b7788f729db02544db2b1';
+            document.getElementsByTagName('head')[0].appendChild(s);
+        })();
+    </script>
+
     <main class="container">
 
         <?php

@@ -45,7 +45,7 @@
                                    
                                     
                                     <li  style="margin:0px 10px;">
-                                        <a href="../html/admin.php" class="btn-5" style="margin: 20px auto; width:100%">Administrateur</a>
+                                        <a href="../html/admin.php#menuPrincipal" class="btn-5" style="margin: 20px auto; width:100%">Administrateur</a>
                                     </li>
                                     
 

@@ -11,31 +11,35 @@ function afficherArticle($data) {
 
     while ($article = $data->fetch() ){
 
-        // AFFICHAGE DU MESSAGE
-        echo '<div class="article ';
-        classerCategories($article['idT_ARTICLES']);
-        echo '">';
-        echo '    <div class="Titre"> <a class="articleId">#<span>'.$article['idT_ARTICLES'].'</span></a> ' . $article['titre'] . '</div>';
-        echo '    <div class="autre">';
-        echo 'statut : ' . $article['statut'] . ' auteur : ' . findAuthor($article['idT_ARTICLES'],$bdd) . '<br>' .  '  date : ' . $article['dateHeure'] . ' ' .  afficherCategories($article['idT_ARTICLES']);
-        echo '    </div>';
-        echo '<br>';
-        echo '    <div class="commenter">';
-        echo '         <button class="btn-commenter btn-5 pop-up-button-sign-in">Commenter !</button>';
-        echo '    </div>';
-        echo '    <div class="voir">';
-        echo '         <button class="btn-voir btn-5">+</button>';
-        echo '    </div>';
-        echo '    <div class="zone-comment">';
-        echo '          <h3>COMMENTAIRES</h3>';
-        echo '          <div class="sous-zone-comment"></div>';
-        echo '    </div>';
-        echo '<br>';
-        echo '    <div class="Contenu"> ';
-        contenu($article['contenu'], 70);
-        echo '    </div>';
-        echo '<br>';
-        echo '</div>';
+       if($article['statut'] == 'redige') {
+
+           // AFFICHAGE DU MESSAGE
+           echo '<div class="article ';
+           classerCategories($article['idT_ARTICLES']);
+           echo '">';
+           echo '    <div class="Titre"> <a class="articleId">#<span>'.$article['idT_ARTICLES'].'</span></a> ' . $article['titre'] . '</div>';
+           echo '    <div class="autre">';
+           echo 'statut : ' . $article['statut'] . ' auteur : ' . findAuthor($article['idT_ARTICLES'],$bdd) . '<br>' .  '  date : ' . $article['dateHeure'] . ' ' .  afficherCategories($article['idT_ARTICLES']);
+           echo '    </div>';
+           echo '<br>';
+           echo '    <div class="commenter">';
+           echo '         <button class="btn-commenter btn-5 pop-up-button-sign-in">Commenter !</button>';
+           echo '    </div>';
+           echo '    <div class="voir">';
+           echo '         <button class="btn-voir btn-5">+</button>';
+           echo '    </div>';
+           echo '    <div class="zone-comment">';
+           echo '          <h3>COMMENTAIRES</h3>';
+           echo '          <div class="sous-zone-comment"></div>';
+           echo '    </div>';
+           echo '<br>';
+           echo '    <div class="Contenu"> ';
+           contenu($article['contenu'], 70);
+           echo '    </div>';
+           echo '<br>';
+           echo '</div>';
+
+       }
     }
 }
 

@@ -14,7 +14,7 @@
 
         $data = $bdd->query($statement);
 
-        afficherArticle($data);
+        modifierArticle($data);
 
     }
 
@@ -27,41 +27,29 @@
     // FUNCTION
 
 
-// AFFICHER ARTICLE
+// MODIFIER ARTICLE
 
-function afficherArticle($data) {
+function modifierArticle($data) {
     $bdd = new PDO($_SESSION['host'], $_SESSION['ndcSQL'], $_SESSION['mdpSQL']);
 
     while ($article = $data->fetch() ){
 
         // AFFICHAGE DU MESSAGE
-        echo '<div class="article ';
-        classerCategories($article['idT_ARTICLES']);
-        echo '">';
-        echo '    <div class="Titre"> <a class="articleId">#<span>'.$article['idT_ARTICLES'].'</span></a> ' . $article['titre'] . '</div>';
-        echo '    <div class="autre">';
-        echo 'statut : ' . $article['statut'] . ' auteur : ' . findAuthor($article['idT_ARTICLES'],$bdd) . '<br>' .  '  date : ' . $article['dateHeure'] . ' ' .  afficherCategories($article['idT_ARTICLES']);
-        echo '    </div>';
-        echo '<br>';
-        echo '    <div class="commenter">';
-        echo '         <button class="btn-commenter btn-5 pop-up-button-sign-in">Commenter !</button>';
-        echo '    </div>';
-        echo '    <div class="voir">';
-        echo '         <button class="btn-voir btn-5">+</button>';
-        echo '    </div>';
-        echo '<br>';
-        echo '    <div class="Contenu"> ';
-        contenu($article['contenu'], 70);
-        echo '    </div>';
-        echo '<br>';
-        echo '</div>';
+        echo '<form class="article" id="form-modif-article" method="POST" action="../php/modifArticle.php"> ';
+        echo '    <input type="text" name="articleId" class="modif-articleId" value="'.$article['idT_ARTICLES'].'">';
+        echo '    <input type="text" class="modif-titre" name="titre" value="'. $article['titre'].'"> ' ;
+        echo       afficherCategoriesCheckbox();
+        echo '     statut : ' . statutButton($article['statut']);
+        echo '    <textarea class="Contenu" name="contenu"> ' . $article['contenu'] . '</textarea>';
+        echo '    <input type="submit" value="Enregistrer les modifications">';
+        echo '</form>';
     }
 }
 
 
 
 
-// Afficher Catégories
+// Afficher Catégories Miniature
 
 function afficherArticleMiniature($data, $auteur = false) {
     $bdd = new PDO($_SESSION['host'], $_SESSION['ndcSQL'], $_SESSION['mdpSQL']);
@@ -151,16 +139,14 @@ function findAuthor($idarticle , $db){
 
 
 
-// Afficher Catégories
+// Afficher Catégories Checkbox
 
-function afficherCategories($articleId) {
+function afficherCategoriesCheckbox() {
     $bdd = new PDO($_SESSION['host'], $_SESSION['ndcSQL'], $_SESSION['mdpSQL']);
 
     $reqStatement = '
                 SELECT *
                 FROM t_categories
-                INNER JOIN t_categories_has_t_articles ON t_categories.idT_CATEGORIES  = t_categories_has_t_articles.T_CATEGORIES_idT_CATEGORIES
-                WHERE t_categories_has_t_articles.T_ARTICLES_idT_ARTICLES	 = ' . $articleId . '
             ';
 
     $requete = $bdd->query($reqStatement);
@@ -168,13 +154,15 @@ function afficherCategories($articleId) {
 
     // On affiche la catégorie
 
-    echo '<span class="categories">';
+    echo '<div class="categories">';
 
     while($categorie = $requete->fetch()) {
-        echo $categorie['categorie'] . ' ';
+        echo '<input type="checkbox" id="'.$categorie['categorie'].'" name="categorie[]" value="'.$categorie['categorie'].'">
+              <label for="'.$categorie['categorie'].'">'.$categorie['categorie'].'</label>
+        ';
     }
 
-    echo '</span><br>';
+    echo '</div><br>';
 
 }
 
@@ -204,6 +192,25 @@ function classerCategories($articleId) {
     }
 
 }
+
+
+
+// Statut Button
+
+function statutButton($statut) {
+    $echo = '
+        <select name="statut" class="statut-btn">
+            <option value="redige">Redige</option>
+            <option value="brouillon">Brouillon</option>
+            <option value="cache">Cache</option>                      
+        </select>
+     ';
+
+    return $echo;
+}
+
+
+
 ?>
 
 
@@ -220,7 +227,8 @@ function classerCategories($articleId) {
 
 
 <!-- INTEGRATION DE POPUP.JS -->
-<script src="../../js/retourButton.js"></script>
+<script src="../js/retourButton.js"></script>
+
 
 
 

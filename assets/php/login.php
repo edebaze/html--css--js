@@ -7,7 +7,7 @@
 
     while($donnees = $reponse->fetch()) {
         if( $_POST['email'] == $donnees['email']) {
-            if ($_POST['MDP'] == $donnees['MDP']) {
+            if ($_POST['MDP'] == $donnees['MDP'] && $donnees['affiche']) {
                 $_SESSION['pseudo'] = $donnees['pseudo'];
                 $_SESSION['userId'] = $donnees['idT_USERS'];
                 $_SESSION['login'] = true;

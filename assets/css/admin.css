@@ -126,7 +126,7 @@ body {
 
 .mainContent>div {
     position: absolute;
-    opacity: 0;
+    display: none;
     -webkit-transition:opacity 200ms linear;
     -moz-transition:opacity 200ms linear;
     -ms-transition:opacity 200ms linear;
@@ -134,7 +134,7 @@ body {
 }
 /*通过opacity来切换不同的选项卡*/
 .mainContent>div:target {
-    opacity: 1;
+    display: block;
 }
 .mainContent h2 {
     margin:1em 30px;
@@ -352,6 +352,6 @@ body {
 
 /* ----------- ETIENNE ----------- */
 .content-admin {
-    background-color: #1E1E1E;
+    background-color: white;
 }
 

@@ -12,12 +12,12 @@
     <div class="clearfix">
         <ul class="content">
             <li>content</li>
-            <li class="articles"><span class="count"><?php $articleId = countMyShit('t_articles', 'ID_USER');?></span><a href="../../html/admin.php/#mesArticles">articles</a></li>
-            <li class="comments-article"><span class="count"><?php countMyShit('t_commentaires', 'T_USERS_idT_USERS') ?></span><a href="">commentaires articles</a></li>
+            <li class="articles"><span class="count"><?php $articleId = countMyShit('t_articles', 'ID_USER');?></span><a href="#mesArticles">articles</a></li>
+            <li class="comments-article"><span class="count"><?php countMyShit('t_commentaires', 'T_USERS_idT_USERS') ?></span><a href="#">commentaires articles</a></li>
         </ul>
         <ul class="discussions">
             <li>discussions</li>
-            <li class="comments"><span class="count"><?php countMyShit('t_articles', 'ID_USER', 't_commentaires') ?></span><a href="">commentaires</a></li>
+            <li class="comments"><span class="count"><?php countMyShit('t_articles', 'ID_USER', 't_commentaires') ?></span><a href="#commentaires">commentaires</a></li>
             <li class="approved"><span class="count">319</span><a href="">approved</a></li>
         </ul>
     </div>

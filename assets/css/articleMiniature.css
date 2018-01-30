@@ -7,7 +7,7 @@
     margin: 20px 30px;
     padding: 30px;
     float: left;
-    background-color: #313234;
+    background-color: #2d333e;
     color: white;
     position: relative;
     z-index: 100000;
@@ -26,4 +26,3 @@
     top : 115%;
     left: 35%;
     z-index: 10000000000;
-}

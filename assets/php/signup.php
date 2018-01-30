@@ -11,15 +11,13 @@
             $email = $_POST['email'];
 
             if (filter_var($email,  FILTER_VALIDATE_EMAIL)) {
-                $req = $bdd->prepare('INSERT INTO t_users(pseudo, email, MDP, T_ROLES_idT_ROLES, admin) VALUES(:pseudo, :email, :MDP, :role, :admin)');
+                $req = $bdd->prepare('INSERT INTO t_users(pseudo, email, MDP, T_ROLES_idT_ROLES) VALUES(:pseudo, :email, :MDP, :role)');
                 $req->execute(array(
-
 
                     'pseudo' => $_POST['pseudo'],
                     'email' => $_POST['email'],
                     'MDP' => $_POST['MDP'],
                     'role' => 1,
-                    'admin' => 1,
 
                 ));
                 $_SESSION['login'] = true;

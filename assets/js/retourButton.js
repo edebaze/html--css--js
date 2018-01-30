@@ -1,7 +1,10 @@
-$(function() {
+     $(function() {
+
+         console.log('RETOUR BUTTON !');
 
         $('#retour-button').click(function() {
-            $('.zone-articles').load('../php/admin/mesArticles.php', {
+            console.log('SALUT LES GENS !!!!!');
+            $('body').load('../html/admin.php', {
                 test : true
             })
         })
